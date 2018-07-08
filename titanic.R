@@ -31,8 +31,8 @@ m <- h2o.randomForest(x = x,
                      model_id = "titanic_rf_defaults")
 
 # create model plots
-ggsave("rf_defaults_model_factors", plot_model_factors(m), "png", "figs")
-ggsave("rf_defaults_model_scoring_history", plot_scoring_history(m), "png", "figs")
+ggsave("rf_defaults_model_factors.png", plot_model_factors(m), "png", "figs")
+ggsave("rf_defaults_model_scoring_history.png", plot_scoring_history(m), "png", "figs")
 
 # save model
 h2o.saveModel(m, "output/models", force = TRUE)
