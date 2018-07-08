@@ -1,5 +1,6 @@
 library(tidyverse)
 library(h2o)
+source("R/model_plots.R")
 
 # start and clear h2o server
 h2o.init()
@@ -29,6 +30,9 @@ m <- h2o.randomForest(x = x,
                      validation_frame = valid,
                      model_id = "titanic_rf_defaults")
 
+# create model plots
+ggsave("rf_defaults_model_factors", plot_model_factors(m), "png", "figs")
+ggsave("rf_defaults_model_scoring_history", plot_scoring_history(m), "png", "figs")
 
-# predict on test data
-result <- h2o.predict(m, test)
+# save model
+h2o.saveModel(m, "output/models", force = TRUE)
